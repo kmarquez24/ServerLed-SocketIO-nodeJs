@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Arduino-Server-Nodejs</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        $(function() {
+            var socket = io();
+
+
+            $("#on").on('click', function() {
+                socket.emit('turn_on', 'on');
+
+            });
+
+
+            $("#off").on('click', function() {
+                socket.emit('turn_off', 'off');
+            });
+
+
+            socket.on('status', function(msg) {
+
+                $("#status").text(msg);
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <button id="on">ON</button>
+    <button id="off">OFF</button>
+    <div id="status"></div>
+</body>
+
+</html>
